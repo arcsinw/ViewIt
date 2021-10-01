@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'im.fir.plugin.gradle'
 apply plugin: 'io.fabric'
 
 // Manifest version information!
@@ -75,7 +74,6 @@ android {
 
     productFlavors {
         linroid {}
-        fir_im {}
         play {}
         coolapk {}
 //        xiaomi {}
@@ -218,12 +216,3 @@ if (signPropFile.exists()) {
     android.buildTypes.release.signingConfig = null
 }
 
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-def firToken = properties.getProperty('fir_token')
-
-fir {
-    //必填 上传 fir.im apk 字段，否则无法上传 APP 到 fir.im
-    apiToken firToken
-}
